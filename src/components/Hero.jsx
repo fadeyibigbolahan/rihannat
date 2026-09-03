@@ -111,7 +111,7 @@ const Hero = ({ setActiveSection }) => {
     <section
       id="home"
       ref={heroRef}
-      className="min-h-screen flex items-center bg-[#FAFAFB] relative overflow-hidden pt-28 pb-16"
+      className="min-h-screen flex items-center bg-[#FAFAFB] relative overflow-hidden pt-28 pb-16 md:pt-32 md:pb-20"
     >
       {/* Decorative elements */}
       <div
@@ -127,7 +127,7 @@ const Hero = ({ setActiveSection }) => {
       <div className="absolute top-20 right-1/4 w-96 h-96 bg-[#FF3B5C]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-20 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
-      {/* Mouse follower */}
+      {/* Mouse follower - desktop only */}
       <motion.div
         className="absolute w-40 h-40 rounded-full pointer-events-none hidden lg:block"
         animate={{
@@ -143,7 +143,7 @@ const Hero = ({ setActiveSection }) => {
       />
 
       <div className="container-custom relative">
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-16 items-center">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
           {/* Copy column */}
           <motion.div
             variants={containerVariants}
@@ -153,7 +153,7 @@ const Hero = ({ setActiveSection }) => {
             {/* Status badge */}
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-3 mb-8"
+              className="inline-flex items-center gap-3 mb-6 md:mb-8"
             >
               <div className="relative flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
@@ -169,7 +169,7 @@ const Hero = ({ setActiveSection }) => {
             {/* Main heading */}
             <motion.h1
               variants={itemVariants}
-              className="font-sora font-bold text-black leading-[0.95] tracking-tight text-6xl md:text-7xl lg:text-8xl mb-8"
+              className="font-sora font-bold text-black leading-[0.95] tracking-tight text-5xl md:text-7xl lg:text-8xl mb-6 md:mb-8"
             >
               Rihannat
               <br />
@@ -196,13 +196,54 @@ const Hero = ({ setActiveSection }) => {
               </span>
             </motion.h1>
 
+            {/* Mobile image - visible only on mobile */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={mounted ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="lg:hidden mb-8"
+            >
+              <div className="relative max-w-[280px] mx-auto">
+                {/* Decorative frame */}
+                <div className="absolute -inset-3 border-2 border-[#FF3B5C]/30 rounded-lg" />
+
+                {/* Image container */}
+                <div className="relative aspect-[4/5] overflow-hidden rounded-lg shadow-xl">
+                  <img
+                    src={rihannat}
+                    alt="Rihannat Ajibade - Marketing and Communications Specialist"
+                    className="w-full h-full object-cover object-center"
+                    loading="eager"
+                  />
+
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+
+                  {/* Floating badge */}
+                  <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-lg">
+                    <Star className="w-4 h-4 text-[#FF3B5C] fill-[#FF3B5C]" />
+                  </div>
+                </div>
+
+                {/* Experience badge */}
+                <div className="absolute -top-3 -right-3 bg-black text-white rounded-lg px-3 py-2 shadow-xl">
+                  <div className="text-center">
+                    <div className="font-sora text-lg font-bold">5+</div>
+                    <div className="font-sora text-[10px] text-white/70">
+                      Years Exp.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
             {/* Tagline */}
             <motion.div
               variants={itemVariants}
-              className="flex items-start gap-5 mb-8 max-w-xl"
+              className="flex items-start gap-5 mb-6 md:mb-8 max-w-xl"
             >
               <div>
-                <p className="font-lora italic text-2xl md:text-3xl text-gray-800 leading-snug">
+                <p className="font-lora italic text-xl md:text-3xl text-gray-800 leading-snug">
                   Strategy. Content. Communication.{" "}
                   <span className="text-[#FF3B5C] font-semibold">Impact.</span>
                 </p>
@@ -212,7 +253,7 @@ const Hero = ({ setActiveSection }) => {
             {/* Description */}
             <motion.p
               variants={itemVariants}
-              className="font-lora text-lg md:text-xl text-gray-600 leading-relaxed mb-12 max-w-lg"
+              className="font-lora text-base md:text-xl text-gray-600 leading-relaxed mb-8 md:mb-12 max-w-lg"
             >
               I turn ideas into clear strategies, content that converts, and
               communication that moves people to action.
@@ -221,19 +262,19 @@ const Hero = ({ setActiveSection }) => {
             {/* CTA buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-4 mb-12"
+              className="flex flex-wrap items-center gap-3 md:gap-4 mb-8 md:mb-12"
             >
               <motion.button
                 onClick={() => goTo("work")}
                 onMouseEnter={() => setHoveredButton("work")}
                 onMouseLeave={() => setHoveredButton(null)}
-                className="group relative inline-flex items-center gap-3 font-sora text-sm font-semibold px-4 py-4 bg-black text-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-black/20"
+                className="group relative inline-flex items-center gap-2 md:gap-3 font-sora text-xs md:text-sm font-semibold px-4 md:px-6 py-3 md:py-4 bg-black text-white overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-black/20"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="relative z-10">View my work</span>
                 <ArrowRight
-                  className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                  className="relative z-10 w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-300 group-hover:translate-x-1"
                   aria-hidden="true"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#FF3B5C] to-[#FF6B8A] transform translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
@@ -243,13 +284,13 @@ const Hero = ({ setActiveSection }) => {
                 onClick={() => goTo("contact")}
                 onMouseEnter={() => setHoveredButton("contact")}
                 onMouseLeave={() => setHoveredButton(null)}
-                className="group inline-flex items-center gap-3 font-sora text-sm font-semibold px-4 py-4 border-2 border-black text-black transition-all duration-300 hover:bg-black hover:text-white"
+                className="group inline-flex items-center gap-2 md:gap-3 font-sora text-xs md:text-sm font-semibold px-4 md:px-6 py-3 md:py-4 border-2 border-black text-black transition-all duration-300 hover:bg-black hover:text-white"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 Let's talk
                 <ArrowUpRight
-                  className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                  className="w-3.5 h-3.5 md:w-4 md:h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                   aria-hidden="true"
                 />
               </motion.button>
@@ -258,7 +299,7 @@ const Hero = ({ setActiveSection }) => {
             {/* Social links */}
             <motion.div
               variants={itemVariants}
-              className="flex items-center gap-4"
+              className="flex items-center gap-3 md:gap-4"
             >
               <span className="font-sora text-xs text-gray-400 uppercase tracking-wider">
                 Follow me
@@ -290,7 +331,7 @@ const Hero = ({ setActiveSection }) => {
             </motion.div>
           </motion.div>
 
-          {/* Visual column */}
+          {/* Visual column - desktop only */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={mounted ? { opacity: 1, scale: 1 } : {}}

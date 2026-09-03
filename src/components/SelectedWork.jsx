@@ -1,6 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, ArrowUpRight, FolderOpen, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  FolderOpen,
+  Sparkles,
+  ExternalLink,
+} from "lucide-react";
 
 const SelectedWork = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -14,6 +20,7 @@ const SelectedWork = () => {
       category: "Strategy",
       year: "2024",
       gradient: "from-[#FF3B5C] to-[#FF6B8A]",
+      link: "https://drive.google.com/drive/folders/1S0w4ZqBovcHnEE3wUKWU8GROyzNNaBiN",
     },
     {
       title: "LAA & TravelDen",
@@ -21,6 +28,7 @@ const SelectedWork = () => {
       category: "Marketing",
       year: "2024",
       gradient: "from-[#8B5CF6] to-[#A78BFA]",
+      link: "https://drive.google.com/drive/folders/1y3eXeWf1qoRwZd1H8qaRF-VXUSri-4Ut?usp=drive_link",
     },
     {
       title: "EB2-NIW Workshop Funnel",
@@ -28,6 +36,7 @@ const SelectedWork = () => {
       category: "Copywriting",
       year: "2023",
       gradient: "from-[#10B981] to-[#34D399]",
+      link: "https://drive.google.com/drive/folders/1FwcQs854jPCF2yMlsNnbhFe1q9rClwkp?usp=drive_link",
     },
     {
       title: "Content Writing SOP",
@@ -35,6 +44,7 @@ const SelectedWork = () => {
       category: "Operations",
       year: "2023",
       gradient: "from-[#F59E0B] to-[#FBBF24]",
+      link: "https://drive.google.com/drive/folders/1a_08duAAQ7OttnEp_g0pC_ZIUc0wCC0m?usp=drive_link",
     },
   ];
 
@@ -154,12 +164,15 @@ const SelectedWork = () => {
           className="border-t border-[#1A1A1A]/10"
         >
           {projects.map((project, index) => (
-            <motion.div
+            <motion.a
               key={index}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
               variants={itemVariants}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative border-b border-[#1A1A1A]/10 cursor-pointer"
+              className="group relative border-b border-[#1A1A1A]/10 cursor-pointer block"
             >
               {/* Hover fill effect */}
               <div className="absolute inset-0 bg-[#1A1A1A] transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-[cubic-bezier(0.77,0,0.175,1)]" />
@@ -214,9 +227,13 @@ const SelectedWork = () => {
                   <span className="font-sora text-xs text-[#1A1A1A]/30 group-hover:text-[#FAFAF7]/40 transition-colors">
                     {project.year}
                   </span>
+                  <span className="font-sora text-xs text-[#1A1A1A]/30 group-hover:text-[#FAFAF7]/40 transition-colors flex items-center gap-1">
+                    <ExternalLink className="w-3 h-3" />
+                    View
+                  </span>
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           ))}
         </motion.div>
 
